@@ -6,7 +6,7 @@
 /*   By: thuy-ngu <thuy-ngu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 23:19:17 by thuy-ngu          #+#    #+#             */
-/*   Updated: 2024/09/11 19:30:34 by thuy-ngu         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:07:57 by thuy-ngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,20 @@ void	ft_print(int stage, t_philo *philo)
 
 void	eating(t_philo *philo)
 {
+	pthread_mutex_lock(&(philo->info->eating_mutex));
 	ft_print(EAT, philo);
 	if (philo->dead)
-	{
-		pthread_mutex_unlock(philo->right_fork);
-		pthread_mutex_unlock(philo->left_fork);
 		return ;
-	}
 	philo->last_meal = get_time();
 	ft_usleep(philo->info->eat_time);
 	pthread_mutex_unlock(philo->right_fork);
+	philo->have_left_lock = false;
 	pthread_mutex_unlock(philo->left_fork);
+	philo->have_left_lock = false;
 	philo->nbr_eat += 1;
 	if (philo->nbr_eat == philo->info->limitnbr_eat)
 		philo->done = true;
+	pthread_mutex_unlock(&(philo->info->eating_mutex));
 }
 
 void	sleeping(t_philo *philo)

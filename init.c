@@ -6,7 +6,7 @@
 /*   By: thuy-ngu <thuy-ngu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 23:19:31 by thuy-ngu          #+#    #+#             */
-/*   Updated: 2024/09/11 19:22:12 by thuy-ngu         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:06:58 by thuy-ngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	init_args(t_info *args, int argc, char **argv)
 	if (args->limitnbr_eat == 0)
 		print_error(QUIT);
 	pthread_mutex_init(&(args->print_mutex), NULL);
+	pthread_mutex_init(&(args->eating_mutex), NULL);
 	args->start_time = get_time();
 }
 
@@ -48,6 +49,8 @@ void	init_philos(t_info *args, t_philo *philo)
 		philo[i].dead = false;
 		philo[i].done = false;
 		philo[i].info = args;
+		philo[i].have_right_lock = false;
+		philo[i].have_left_lock = false;
 		i++;
 	}
 }

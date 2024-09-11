@@ -6,7 +6,7 @@
 /*   By: thuy-ngu <thuy-ngu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:55:39 by thuy-ngu          #+#    #+#             */
-/*   Updated: 2024/09/11 19:21:00 by thuy-ngu         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:06:35 by thuy-ngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_philo
 	pthread_mutex_t	*left_fork;
 	bool			dead;
 	bool			done;
+	bool			have_right_lock;
+	bool			have_left_lock;
 }	t_philo;
 
 typedef struct s_info
@@ -72,8 +74,11 @@ typedef struct s_info
 	size_t			sleep_time;
 	size_t			start_time;
 	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	eating_mutex;
 	t_philo			*philo_info;
 	pthread_t		checker;
+	pthread_mutex_t	dead_mutex;
+	bool			dead;
 }	t_info;
 
 void	print_error(int sign);
