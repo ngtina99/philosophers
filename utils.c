@@ -28,8 +28,9 @@ void	ft_usleep(size_t time)
 
 	start = get_time();
 	while ((get_time() - start) < time)
-		usleep(time / 10);
+		usleep(500);
 }
+
 
 int	check_args(char **argv)
 {

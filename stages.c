@@ -44,13 +44,10 @@ void	ft_print(int stage, t_philo *philo)
 
 void	eating(t_philo *philo)
 {
-	pthread_mutex_lock(&(philo->info->eating_mutex));
+	set_philo_state(philo, E);
 	ft_print(EAT, philo);
 	if (philo->dead)
-	{
-		pthread_mutex_unlock(&(philo->info->eating_mutex));
 		return ;
-	}
 	philo->last_meal = get_time();
 	ft_usleep(philo->info->eat_time);
 	pthread_mutex_unlock(philo->right_fork);
@@ -60,11 +57,11 @@ void	eating(t_philo *philo)
 	philo->nbr_eat += 1;
 	if (philo->nbr_eat == philo->info->limitnbr_eat)
 		philo->done = true;
-	pthread_mutex_unlock(&(philo->info->eating_mutex));
 }
 
 void	sleeping(t_philo *philo)
 {
+	set_philo_state(philo, S);
 	ft_print(SLEEP, philo);
 	if (philo->dead)
 		return ;
@@ -73,6 +70,7 @@ void	sleeping(t_philo *philo)
 
 void	thinking(t_philo *philo)
 {
+	set_philo_state(philo, T);
 	ft_print(THINK, philo);
 	if (philo->dead)
 		return ;

@@ -48,6 +48,16 @@ typedef enum s_status
 	DIE_BEF_SLEEP,
 }	t_status;
 
+typedef enum s_state
+{
+	E,
+	S,
+	T,
+	D,
+	FULL,
+	IDLE,
+}	t_state;
+
 struct	s_info;
 
 typedef struct s_philo
@@ -63,6 +73,8 @@ typedef struct s_philo
 	bool			done;
 	bool			have_right_lock;
 	bool			have_left_lock;
+	int				state;
+	pthread_mutex_t	mut_state;
 }	t_philo;
 
 typedef struct s_info
@@ -99,5 +111,7 @@ void	init_tools(t_philo *philo, pthread_mutex_t *forks);
 void	destroy_philo(t_philo *philo, pthread_mutex_t *forks, t_info *info);
 void	get_fork(t_philo *philo);
 void	*ft_checker(void *info_converter);
+void	set_philo_state(t_philo *philo, t_state state);
+t_state	get_philo_state(t_philo *philo);
 
 #endif

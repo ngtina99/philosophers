@@ -1,6 +1,6 @@
 NAME	= philo
 
-SRC		= main.c exit_and_error.c init.c start_simulation.c get_fork.c stages.c utils.c 
+SRC		= main.c exit_and_error.c init.c start_simulation.c get_fork.c stages.c utils.c philo_state.c
 OBJ		= $(SRC:.c=.o)
 HEADER	= philo.h
 

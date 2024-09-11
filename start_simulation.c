@@ -22,6 +22,22 @@ size_t	get_time_checker(void)
 	return (time_msec);
 }
 
+bool	philo_died(t_philo *philo)
+{
+	bool		result;
+	t_info		*info;
+
+	info = philo->info;
+	result = false;
+	if (get_time() - philo->last_meal > philo->info->die_time
+		&& get_philo_state(philo) != E)
+	{
+		set_philo_state(philo, D);
+		result = true;
+	}
+	return (result);
+}
+
 void	*ft_checker(void *convert_philo)
 {
 	int		i;
@@ -34,11 +50,17 @@ void	*ft_checker(void *convert_philo)
 	while (1)
 	{
 		i = 0;
-		done_checker = 0;
+		//done_checker = 0;
 		while (i < philo->info->nbr_philo)
 		{
-			philo_input = &philo[i];
-			pthread_mutex_lock(&(philo_input->info->eating_mutex));			
+				philo_input = &philo[i];
+				if (philo_died(philo_input))
+				{
+					ft_print(DEAD, philo);
+					//notify_all_philos(philo->info);
+					return(NULL) ;
+				}
+			//pthread_mutex_lock(&(philo_input->info->eating_mutex));			
 			//if(philo->done)
 			//	done_checker++;
 			//if(done_checker == info->nbr_philo)
@@ -47,18 +69,18 @@ void	*ft_checker(void *convert_philo)
 			//	return(NULL);
 			//}
 			//if (((get_time_checker() - philo->last_meal) > info->die_time) && !philo->done)
-			if (((get_time_checker() - philo->last_meal) > philo->info->die_time))
-			{
+			//if (((get_time_checker() - philo->last_meal) > philo->info->die_time))
+			//{
 				//pthread_mutex_unlock(&philo->eating_mutex);
-				ft_print(DEAD, philo);
+			//	ft_print(DEAD, philo);
 				//pthread_mutex_lock(&info->eating_mutex);
-				pthread_mutex_unlock(&(philo_input->info->eating_mutex));
-				return (NULL);
-			}
-			pthread_mutex_unlock(&(philo_input->info->eating_mutex));
+			//	pthread_mutex_unlock(&(philo_input->info->eating_mutex));
+			//	return (NULL);
+			//}
+			//pthread_mutex_unlock(&(philo_input->info->eating_mutex));
 			i++;
+			usleep(1000);
 		}
-		usleep(1000);
 	}
 	return (NULL);
 }
@@ -78,7 +100,7 @@ void	*start_simulation(void *convert_philo)
 	philo = (t_philo *)convert_philo;
 	philo->last_meal = get_time();
 	if (philo->id % 2 == 0)
-		ft_usleep(philo->info->eat_time - 1000);
+		ft_usleep(philo->info->eat_time - 10);
 	while (1)
 	{
 		if (philo->dead)

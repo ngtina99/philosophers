@@ -51,6 +51,8 @@ void	init_philos(t_info *args, t_philo *philo)
 		philo[i].info = args;
 		philo[i].have_right_lock = false;
 		philo[i].have_left_lock = false;
+		philo[i].state = IDLE;
+		pthread_mutex_init(&philo[i].mut_state, NULL);
 		i++;
 	}
 }
