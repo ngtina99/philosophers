@@ -24,37 +24,25 @@ void	odd_case(t_philo *philo)
 	}
 	if (philo->dead)
 		return ;
-
 	pthread_mutex_lock(philo->right_fork);
 	philo->have_right_lock = true;
 	ft_print(GET_LEFT_FORK, philo);
 	if (philo->dead)
-	{
-		pthread_mutex_unlock(philo->left_fork);
-		pthread_mutex_unlock(philo->right_fork);
 		return ;
-	}
 }
 
 void	even_case(t_philo *philo)
 {
 	pthread_mutex_lock(philo->right_fork);
 	philo->have_right_lock = true;
-	ft_print(GET_LEFT_FORK, philo);
-	if (philo->dead)
-	{
-		pthread_mutex_unlock(philo->right_fork);
-		return ;
-	}
-	pthread_mutex_lock(philo->left_fork);
-	philo->have_left_lock = true;
 	ft_print(GET_RIGHT_FORK, philo);
 	if (philo->dead)
-	{
-		pthread_mutex_unlock(philo->right_fork);
-		pthread_mutex_unlock(philo->left_fork);
 		return ;
-	}
+	pthread_mutex_lock(philo->left_fork);
+	philo->have_left_lock = true;
+	ft_print(GET_LEFT_FORK, philo);
+	if (philo->dead)
+		return ;
 }
 
 void	get_fork(t_philo *philo)

@@ -12,61 +12,53 @@
 
 #include "philo.h"
 
-// void	*ft_checker(void *info_converter)
-// {
-// 	int		i;
-// 	int		nbr_philo;
-// 	t_info	*info;
-// 	t_philo	*philo;
-
-// 	info = (t_info *)info_converter;
-// 	philo = info->philo_info;
-	
-// 	{
-		
-// 	}
-// }
-
-void	*ft_checker(void *info_converter)
+size_t	get_time_checker(void)
 {
-	t_info	*info;
-	t_philo	*philo;
+	struct timeval	time_val;
+	size_t			time_msec;
+
+	gettimeofday(&time_val, NULL);
+	time_msec = ((time_val.tv_sec * 1e3) + (time_val.tv_usec / 1e3));
+	return (time_msec);
+}
+
+void	*ft_checker(void *convert_philo)
+{
 	int		i;
-	size_t current_time;
 	int		done_checker;
-	info = (t_info *)info_converter;
+	t_philo		*philo;
+	t_philo		*philo_input;
+
+	philo = (t_philo *)convert_philo;
 
 	while (1)
 	{
 		i = 0;
 		done_checker = 0;
-		while (i < info->nbr_philo)
+		while (i < philo->info->nbr_philo)
 		{
-			philo = &info->philo_info[i];
-
-			pthread_mutex_lock(&(philo->info->eating_mutex));
-			current_time = get_time();
-			
-			if(philo->done)
-				done_checker++;
-			if(done_checker == info->nbr_philo)
-			{
-				pthread_mutex_unlock(&(philo->info->eating_mutex));
-				return(NULL);
-			}
-			if (current_time - philo->last_meal > info->die_time && !philo->done)
+			philo_input = &philo[i];
+			pthread_mutex_lock(&(philo_input->info->eating_mutex));			
+			//if(philo->done)
+			//	done_checker++;
+			//if(done_checker == info->nbr_philo)
+			//{
+			//	pthread_mutex_unlock(&(philo->info->eating_mutex));
+			//	return(NULL);
+			//}
+			//if (((get_time_checker() - philo->last_meal) > info->die_time) && !philo->done)
+			if (((get_time_checker() - philo->last_meal) > philo->info->die_time))
 			{
 				//pthread_mutex_unlock(&philo->eating_mutex);
 				ft_print(DEAD, philo);
-	
 				//pthread_mutex_lock(&info->eating_mutex);
-				pthread_mutex_unlock(&(philo->info->eating_mutex));
+				pthread_mutex_unlock(&(philo_input->info->eating_mutex));
 				return (NULL);
 			}
-			pthread_mutex_unlock(&(philo->info->eating_mutex));
+			pthread_mutex_unlock(&(philo_input->info->eating_mutex));
 			i++;
 		}
-		//usleep(1000);
+		usleep(1000);
 	}
 	return (NULL);
 }
@@ -85,6 +77,8 @@ void	*start_simulation(void *convert_philo)
 
 	philo = (t_philo *)convert_philo;
 	philo->last_meal = get_time();
+	if (philo->id % 2 == 0)
+		ft_usleep(philo->info->eat_time - 1000);
 	while (1)
 	{
 		if (philo->dead)

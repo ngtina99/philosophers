@@ -91,8 +91,11 @@ void	init_threads(t_philo *philo, t_info *args)
 		&start_simulation, (void *)&philo[i]);
 		i++;
 	}
-	pthread_create(&args->checker, NULL, &ft_checker, args);
-	pthread_join(args->checker, NULL);
+	if (philo->info->nbr_philo != 1)
+	{
+		pthread_create(&args->checker, NULL, &ft_checker, args->philo_info);
+		pthread_join(args->checker, NULL);
+	}
 	i = 0;
 	while (i < philo->info->nbr_philo)
 	{

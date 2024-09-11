@@ -12,19 +12,6 @@
 
 #include "philo.h"
 
-void	print_dead_case(int stage, t_philo *philo, size_t timestamp)
-{
-	philo->dead = true;
-	if (stage == DIE_BEF_EAT)
-		timestamp = philo->info->die_time + philo->last_meal \
-		- (philo->info->start_time);
-	if (stage == DIE_BEF_SLEEP)
-		timestamp = philo->info->die_time + philo->last_meal \
-		- (philo->info->start_time);
-	printf("%lu %ld %s\n", timestamp, philo->id, "died");
-	return ;
-}
-
 void	ft_print(int stage, t_philo *philo)
 {
 	size_t		timestamp;
@@ -49,7 +36,8 @@ void	ft_print(int stage, t_philo *philo)
 	else if (stage == DEAD || stage == DIE_BEF_EAT || stage == DIE_BEF_SLEEP)
 	{
 		finish = 1;
-		print_dead_case(stage, philo, timestamp);
+		philo->dead = true;
+		printf("%lu %ld %s\n", timestamp, philo->id, "died");
 	}
 	pthread_mutex_unlock(&(philo->info->print_mutex));
 }
@@ -59,11 +47,14 @@ void	eating(t_philo *philo)
 	pthread_mutex_lock(&(philo->info->eating_mutex));
 	ft_print(EAT, philo);
 	if (philo->dead)
+	{
+		pthread_mutex_unlock(&(philo->info->eating_mutex));
 		return ;
+	}
 	philo->last_meal = get_time();
 	ft_usleep(philo->info->eat_time);
 	pthread_mutex_unlock(philo->right_fork);
-	philo->have_left_lock = false;
+	philo->have_right_lock = false;
 	pthread_mutex_unlock(philo->left_fork);
 	philo->have_left_lock = false;
 	philo->nbr_eat += 1;
