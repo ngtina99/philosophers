@@ -41,9 +41,11 @@ void	destroy_philo(t_philo *philo, pthread_mutex_t *forks, t_info *info)
 	while (i < philo->info->nbr_philo)
 	{
 		pthread_mutex_destroy(&(forks[i]));
+		pthread_mutex_destroy(&(philo[i].meal_nbr_mutex));
+		pthread_mutex_destroy(&(philo[i].last_meal_mutex));
+		pthread_mutex_destroy(&(philo[i].state_mutex));
 		i++;
 	}
-	pthread_mutex_destroy(&(philo->meal_nbr_mutex));
 	pthread_mutex_destroy(&(info->print_mutex));
 	pthread_mutex_destroy(&(info->eating_mutex));
 	free(philo);

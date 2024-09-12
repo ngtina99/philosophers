@@ -54,6 +54,7 @@ void	init_philos(t_info *args, t_philo *philo)
 		philo[i].state = IDLE;
 		pthread_mutex_init(&philo[i].state_mutex, NULL);
 		pthread_mutex_init(&philo[i].meal_nbr_mutex, NULL);
+		pthread_mutex_init(&philo[i].last_meal_mutex, NULL);
 		i++;
 	}
 }

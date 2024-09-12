@@ -82,6 +82,7 @@ typedef struct s_philo
 	int				state;
 	pthread_mutex_t	state_mutex;
 	pthread_mutex_t	meal_nbr_mutex;
+	pthread_mutex_t last_meal_mutex;
 }	t_philo;
 
 typedef struct s_info

@@ -22,6 +22,16 @@ size_t	get_time_checker(void)
 	return (time_msec);
 }
 
+size_t	get_last_eat_time(t_philo *philo)
+{
+	size_t	last_eat_time;
+
+	pthread_mutex_lock(&philo->last_meal_mutex);
+	last_eat_time = philo->last_meal;
+	pthread_mutex_unlock(&philo->last_meal_mutex);
+	return (last_eat_time);
+}
+
 bool	philo_died(t_philo *philo)
 {
 	bool		result;
@@ -29,7 +39,7 @@ bool	philo_died(t_philo *philo)
 
 	info = philo->info;
 	result = false;
-	if (get_time() - philo->last_meal > philo->info->die_time
+	if (get_time() - get_last_eat_time(philo) > philo->info->die_time
 		&& get_philo_state(philo) != E)
 	{
 		set_philo_state(philo, D);
@@ -79,12 +89,12 @@ void	*ft_checker(void *convert_philo)
 				done_checker += 1;
 			if(done_checker == (philo->info->nbr_philo))
 				return(NULL);
-				/*if (philo_died(philo_input))
-				{
-					ft_print(DEAD, philo);
-					//notify_all_philos(philo->info);
-					return(NULL) ;
-				}*/
+			if (philo_died(philo_input))
+			{
+				ft_print(DEAD, philo);
+				//notify_all_philos(philo->info);
+				return(NULL) ;
+			}
 			i++;
 		}
 		usleep(1000);

@@ -42,13 +42,21 @@ void	ft_print(int stage, t_philo *philo)
 	pthread_mutex_unlock(&(philo->info->print_mutex));
 }
 
+void	update_last_meal_time(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->last_meal_mutex);
+	philo->last_meal = get_time();
+	pthread_mutex_unlock(&philo->last_meal_mutex);
+}
+
 void	eating(t_philo *philo)
 {
 	set_philo_state(philo, E);
 	ft_print(EAT, philo);
 	if (philo->dead)
 		return ;
-	philo->last_meal = get_time();
+	update_last_meal_time(philo);
+	//philo->last_meal = get_time();
 	ft_usleep(philo->info->eat_time);
 	pthread_mutex_unlock(philo->right_fork);
 	philo->have_right_lock = false;
