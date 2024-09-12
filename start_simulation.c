@@ -101,52 +101,6 @@ void	*ft_checker(void *convert_philo)
 	}
 	return (NULL);
 }
-/*void	*ft_checker(void *convert_philo)
-{
-	int		i;
-	int		done_checker;
-	t_philo		*philo;
-	t_philo		*philo_input;
-
-	philo = (t_philo *)convert_philo;
-
-	while (1)
-	{
-		i = 0;
-		//done_checker = 0;
-		while (i < philo->info->nbr_philo)
-		{
-				philo_input = &philo[i];
-				if (philo_died(philo_input))
-				{
-					ft_print(DEAD, philo);
-					//notify_all_philos(philo->info);
-					return(NULL) ;
-				}
-			//pthread_mutex_lock(&(philo_input->info->eating_mutex));			
-			//if(philo->done)
-			//	done_checker++;
-			//if(done_checker == info->nbr_philo)
-			//{
-			//	pthread_mutex_unlock(&(philo->info->eating_mutex));
-			//	return(NULL);
-			//}
-			//if (((get_time_checker() - philo->last_meal) > info->die_time) && !philo->done)
-			//if (((get_time_checker() - philo->last_meal) > philo->info->die_time))
-			//{
-				//pthread_mutex_unlock(&philo->eating_mutex);
-			//	ft_print(DEAD, philo);
-				//pthread_mutex_lock(&info->eating_mutex);
-			//	pthread_mutex_unlock(&(philo_input->info->eating_mutex));
-			//	return (NULL);
-			//}
-			//pthread_mutex_unlock(&(philo_input->info->eating_mutex));
-			i++;
-			usleep(1000);
-		}
-	}
-	return (NULL);
-}*/
 
 void	check_locks(t_philo *philo)
 {
@@ -166,19 +120,19 @@ void	*start_simulation(void *convert_philo)
 		ft_usleep(philo->info->eat_time - 10);
 	while (1)
 	{
-		if (philo->dead)
+		if (set_dead_bool(philo, CHECK))
 		{
 			check_locks(philo);
 			return (NULL);
 		}
 		get_fork(philo);
-		if (philo->dead)
+		if (set_dead_bool(philo, CHECK))
 		{
 			check_locks(philo);
 			return (NULL);
 		}
 		eating(philo);
-		if (philo->dead)
+		if (set_dead_bool(philo, CHECK))
 		{
 			check_locks(philo);
 			return (NULL);
@@ -186,7 +140,7 @@ void	*start_simulation(void *convert_philo)
 		if (philo->done)
 			return (NULL);
 		sleeping(philo);
-		if (philo->dead)
+		if (set_dead_bool(philo, CHECK))
 		{
 			check_locks(philo);
 			return (NULL);

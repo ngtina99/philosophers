@@ -44,6 +44,7 @@ void	destroy_philo(t_philo *philo, pthread_mutex_t *forks, t_info *info)
 		pthread_mutex_destroy(&(philo[i].meal_nbr_mutex));
 		pthread_mutex_destroy(&(philo[i].last_meal_mutex));
 		pthread_mutex_destroy(&(philo[i].state_mutex));
+		pthread_mutex_destroy(&(philo[i].dead_bool_mutex));
 		i++;
 	}
 	pthread_mutex_destroy(&(info->print_mutex));

@@ -20,7 +20,7 @@ void	ft_print(int stage, t_philo *philo)
 	pthread_mutex_lock(&(philo->info->print_mutex));
 	if (finish == 1)
 	{
-		philo->dead = true;
+		set_dead_bool(philo, ADD);
 		pthread_mutex_unlock(&(philo->info->print_mutex));
 		return ;
 	}
@@ -36,7 +36,7 @@ void	ft_print(int stage, t_philo *philo)
 	else if (stage == DEAD || stage == DIE_BEF_EAT || stage == DIE_BEF_SLEEP)
 	{
 		finish = 1;
-		philo->dead = true;
+		set_dead_bool(philo, ADD);
 		printf("%lu %ld %s\n", timestamp, philo->id, "died");
 	}
 	pthread_mutex_unlock(&(philo->info->print_mutex));
@@ -53,7 +53,7 @@ void	eating(t_philo *philo)
 {
 	set_philo_state(philo, E);
 	ft_print(EAT, philo);
-	if (philo->dead)
+	if (set_dead_bool(philo, CHECK))
 		return ;
 	update_last_meal_time(philo);
 	//philo->last_meal = get_time();
@@ -71,7 +71,7 @@ void	sleeping(t_philo *philo)
 {
 	set_philo_state(philo, S);
 	ft_print(SLEEP, philo);
-	if (philo->dead)
+	if (set_dead_bool(philo, CHECK))
 		return ;
 	ft_usleep(philo->info->sleep_time);
 }
@@ -80,6 +80,6 @@ void	thinking(t_philo *philo)
 {
 	set_philo_state(philo, T);
 	ft_print(THINK, philo);
-	if (philo->dead)
+	if (set_dead_bool(philo, CHECK))
 		return ;
 }

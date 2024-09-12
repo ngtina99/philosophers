@@ -83,6 +83,7 @@ typedef struct s_philo
 	pthread_mutex_t	state_mutex;
 	pthread_mutex_t	meal_nbr_mutex;
 	pthread_mutex_t last_meal_mutex;
+	pthread_mutex_t dead_bool_mutex;
 }	t_philo;
 
 typedef struct s_info
@@ -122,5 +123,6 @@ void	*ft_checker(void *info_converter);
 void	set_philo_state(t_philo *philo, t_state state);
 t_state	get_philo_state(t_philo *philo);
 unsigned int	add_meal_nbr(t_philo *philo, int function);
+bool	set_dead_bool(t_philo *philo, int function);
 
 #endif

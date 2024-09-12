@@ -22,12 +22,12 @@ void	odd_case(t_philo *philo)
 		ft_usleep(philo->info->die_time);
 		ft_print(DEAD, philo);
 	}
-	if (philo->dead)
+	if (set_dead_bool(philo, CHECK))
 		return ;
 	pthread_mutex_lock(philo->right_fork);
 	philo->have_right_lock = true;
 	ft_print(GET_LEFT_FORK, philo);
-	if (philo->dead)
+	if (set_dead_bool(philo, CHECK))
 		return ;
 }
 
@@ -36,12 +36,12 @@ void	even_case(t_philo *philo)
 	pthread_mutex_lock(philo->right_fork);
 	philo->have_right_lock = true;
 	ft_print(GET_RIGHT_FORK, philo);
-	if (philo->dead)
+	if (set_dead_bool(philo, CHECK))
 		return ;
 	pthread_mutex_lock(philo->left_fork);
 	philo->have_left_lock = true;
 	ft_print(GET_LEFT_FORK, philo);
-	if (philo->dead)
+	if (set_dead_bool(philo, CHECK))
 		return ;
 }
 

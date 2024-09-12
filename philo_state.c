@@ -18,6 +18,20 @@ void	set_philo_state(t_philo *philo, t_state state)
 	pthread_mutex_unlock(&philo->state_mutex);
 }
 
+bool	set_dead_bool(t_philo *philo, int function)
+{
+	bool	one_died;
+
+	one_died = false;
+	pthread_mutex_lock(&philo->dead_bool_mutex);
+	if (function ==  ADD)
+		philo->dead = true;
+	if(philo->dead)
+		one_died = true;
+	pthread_mutex_unlock(&philo->dead_bool_mutex);
+	return(one_died);
+}
+
 /*bool	get_keep_iter(t_data *data)
 {
 	bool	keep_iterating;
