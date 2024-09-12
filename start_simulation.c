@@ -38,7 +38,60 @@ bool	philo_died(t_philo *philo)
 	return (result);
 }
 
+unsigned int	add_meal_nbr(t_philo *philo, int function)
+{
+	pthread_mutex_lock(&(philo->meal_nbr_mutex));
+	if (function == ADD)
+		philo->nbr_eat += 1;
+	pthread_mutex_unlock(&(philo->meal_nbr_mutex));
+}
+
+unsigned int	check_meal_nbr(t_philo *philo, int function)
+{
+	static	unsigned int meal_nbr = 0;
+	bool	done;
+
+	done = false;
+	pthread_mutex_lock(&(philo->meal_nbr_mutex));
+	if ((philo->nbr_eat) == (philo->info->limitnbr_eat))
+		done = true;
+	pthread_mutex_unlock(&(philo->meal_nbr_mutex));
+	return (done);
+}
+
 void	*ft_checker(void *convert_philo)
+{
+	int		i;
+	unsigned int done_checker;
+	t_philo		*philo;
+	t_philo		*philo_input;
+
+	philo = (t_philo *)convert_philo;
+
+	while (1)
+	{
+		i = 0;
+		done_checker = 0;
+		while (i < philo->info->nbr_philo)
+		{
+			philo_input = &philo[i];
+			if (check_meal_nbr(philo_input, CHECK))
+				done_checker += 1;
+			if(done_checker == (philo->info->nbr_philo))
+				return(NULL);
+				/*if (philo_died(philo_input))
+				{
+					ft_print(DEAD, philo);
+					//notify_all_philos(philo->info);
+					return(NULL) ;
+				}*/
+			i++;
+		}
+		usleep(1000);
+	}
+	return (NULL);
+}
+/*void	*ft_checker(void *convert_philo)
 {
 	int		i;
 	int		done_checker;
@@ -83,7 +136,7 @@ void	*ft_checker(void *convert_philo)
 		}
 	}
 	return (NULL);
-}
+}*/
 
 void	check_locks(t_philo *philo)
 {

@@ -43,6 +43,7 @@ void	destroy_philo(t_philo *philo, pthread_mutex_t *forks, t_info *info)
 		pthread_mutex_destroy(&(forks[i]));
 		i++;
 	}
+	pthread_mutex_destroy(&(philo->meal_nbr_mutex));
 	pthread_mutex_destroy(&(info->print_mutex));
 	pthread_mutex_destroy(&(info->eating_mutex));
 	free(philo);

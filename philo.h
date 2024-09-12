@@ -58,6 +58,12 @@ typedef enum s_state
 	IDLE,
 }	t_state;
 
+typedef enum s_meal_check
+{
+	CHECK,
+	ADD,
+}	t_meal_check;
+
 struct	s_info;
 
 typedef struct s_philo
@@ -74,7 +80,8 @@ typedef struct s_philo
 	bool			have_right_lock;
 	bool			have_left_lock;
 	int				state;
-	pthread_mutex_t	mut_state;
+	pthread_mutex_t	state_mutex;
+	pthread_mutex_t	meal_nbr_mutex;
 }	t_philo;
 
 typedef struct s_info
@@ -113,5 +120,6 @@ void	get_fork(t_philo *philo);
 void	*ft_checker(void *info_converter);
 void	set_philo_state(t_philo *philo, t_state state);
 t_state	get_philo_state(t_philo *philo);
+unsigned int	add_meal_nbr(t_philo *philo, int function);
 
 #endif

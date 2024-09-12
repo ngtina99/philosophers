@@ -54,7 +54,7 @@ void	eating(t_philo *philo)
 	philo->have_right_lock = false;
 	pthread_mutex_unlock(philo->left_fork);
 	philo->have_left_lock = false;
-	philo->nbr_eat += 1;
+	add_meal_nbr(philo, ADD);
 	if (philo->nbr_eat == philo->info->limitnbr_eat)
 		philo->done = true;
 }

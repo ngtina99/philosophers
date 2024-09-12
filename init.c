@@ -52,7 +52,8 @@ void	init_philos(t_info *args, t_philo *philo)
 		philo[i].have_right_lock = false;
 		philo[i].have_left_lock = false;
 		philo[i].state = IDLE;
-		pthread_mutex_init(&philo[i].mut_state, NULL);
+		pthread_mutex_init(&philo[i].state_mutex, NULL);
+		pthread_mutex_init(&philo[i].meal_nbr_mutex, NULL);
 		i++;
 	}
 }
