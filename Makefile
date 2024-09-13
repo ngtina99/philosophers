@@ -4,7 +4,7 @@ SRC		= main.c exit_and_error.c init.c start_simulation.c get_fork.c stages.c uti
 OBJ		= $(SRC:.c=.o)
 HEADER	= philo.h
 
-#CFLAGS	= -g -Wall -Wextra -Werror 
+CFLAGS	= -g -Wall -Wextra -Werror 
 
 CC	= cc
 RM	= rm -f
@@ -34,4 +34,4 @@ fclean:		clean
 
 re:	fclean all
 
-.PHONY:	check	all clean fclean re
+.PHONY:	all clean fclean re

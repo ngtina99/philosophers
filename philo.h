@@ -6,7 +6,7 @@
 /*   By: thuy-ngu <thuy-ngu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:55:39 by thuy-ngu          #+#    #+#             */
-/*   Updated: 2024/09/11 20:06:35 by thuy-ngu         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:37:33 by thuy-ngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,8 @@ void	get_fork(t_philo *philo);
 void	*ft_checker(void *info_converter);
 void	set_philo_state(t_philo *philo, t_state state);
 t_state	get_philo_state(t_philo *philo);
-unsigned int	add_meal_nbr(t_philo *philo, int function);
+unsigned int	check_meal_nbr(t_philo *philo, int function);
 bool	set_dead_bool(t_philo *philo, int function);
+void	update_last_meal_time(t_philo *philo);
 
 #endif

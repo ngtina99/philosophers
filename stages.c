@@ -6,7 +6,7 @@
 /*   By: thuy-ngu <thuy-ngu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 23:19:17 by thuy-ngu          #+#    #+#             */
-/*   Updated: 2024/09/11 20:07:57 by thuy-ngu         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:36:41 by thuy-ngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	eating(t_philo *philo)
 	philo->have_right_lock = false;
 	pthread_mutex_unlock(philo->left_fork);
 	philo->have_left_lock = false;
-	add_meal_nbr(philo, ADD);
+	check_meal_nbr(philo, ADD);
 	if (philo->nbr_eat == philo->info->limitnbr_eat)
 		philo->done = true;
 }

@@ -6,7 +6,7 @@
 /*   By: thuy-ngu <thuy-ngu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 23:19:12 by thuy-ngu          #+#    #+#             */
-/*   Updated: 2024/09/11 15:46:41 by thuy-ngu         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:33:55 by thuy-ngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,23 @@ size_t	get_time(void)
 	return (time_msec);
 }
 
+// void	ft_usleep(size_t time)
+// {
+// 	size_t	start;
+
+// 	start = get_time();
+// 	while ((get_time() - start) < time)
+// 		usleep(500);
+// }
+
 void	ft_usleep(size_t time)
 {
 	size_t	start;
 
 	start = get_time();
 	while ((get_time() - start) < time)
-		usleep(500);
+		usleep(time / 10);
+	return ;
 }
 
 

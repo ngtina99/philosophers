@@ -6,7 +6,7 @@
 /*   By: thuy-ngu <thuy-ngu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 00:27:14 by thuy-ngu          #+#    #+#             */
-/*   Updated: 2024/09/11 20:08:11 by thuy-ngu         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:37:07 by thuy-ngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ size_t	get_last_eat_time(t_philo *philo)
 bool	philo_died(t_philo *philo)
 {
 	bool		result;
-	t_info		*info;
 
-	info = philo->info;
 	result = false;
 	if (get_time() - get_last_eat_time(philo) > philo->info->die_time
 		&& get_philo_state(philo) != E)
@@ -48,21 +46,14 @@ bool	philo_died(t_philo *philo)
 	return (result);
 }
 
-unsigned int	add_meal_nbr(t_philo *philo, int function)
-{
-	pthread_mutex_lock(&(philo->meal_nbr_mutex));
-	if (function == ADD)
-		philo->nbr_eat += 1;
-	pthread_mutex_unlock(&(philo->meal_nbr_mutex));
-}
-
 unsigned int	check_meal_nbr(t_philo *philo, int function)
 {
-	static	unsigned int meal_nbr = 0;
 	bool	done;
 
 	done = false;
 	pthread_mutex_lock(&(philo->meal_nbr_mutex));
+	if (function == ADD)
+		philo->nbr_eat += 1;
 	if ((philo->nbr_eat) == (philo->info->limitnbr_eat))
 		done = true;
 	pthread_mutex_unlock(&(philo->meal_nbr_mutex));
@@ -72,7 +63,7 @@ unsigned int	check_meal_nbr(t_philo *philo, int function)
 void	*ft_checker(void *convert_philo)
 {
 	int		i;
-	unsigned int done_checker;
+	int done_checker;
 	t_philo		*philo;
 	t_philo		*philo_input;
 
@@ -115,9 +106,11 @@ void	*start_simulation(void *convert_philo)
 	t_philo		*philo;
 
 	philo = (t_philo *)convert_philo;
-	philo->last_meal = get_time();
+	//philo->last_meal = get_time();
+	update_last_meal_time(philo);
 	if (philo->id % 2 == 0)
 		ft_usleep(philo->info->eat_time - 10);
+	//update_last_meal_time(philo);
 	while (1)
 	{
 		if (set_dead_bool(philo, CHECK))
