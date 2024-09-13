@@ -6,7 +6,7 @@
 /*   By: thuy-ngu <thuy-ngu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 23:19:31 by thuy-ngu          #+#    #+#             */
-/*   Updated: 2024/09/11 20:06:58 by thuy-ngu         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:51:12 by thuy-ngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	init_philos(t_info *args, t_philo *philo)
 		philo[i].id = i + 1;
 		philo[i].status = 0;
 		philo[i].nbr_eat = 0;
-		philo[i].last_meal = 0;
 		philo[i].dead = false;
 		philo[i].done = false;
 		philo[i].info = args;
@@ -56,6 +55,7 @@ void	init_philos(t_info *args, t_philo *philo)
 		pthread_mutex_init(&philo[i].meal_nbr_mutex, NULL);
 		pthread_mutex_init(&philo[i].last_meal_mutex, NULL);
 		pthread_mutex_init(&philo[i].dead_bool_mutex, NULL);
+		update_last_meal_time(&philo[i]);
 		i++;
 	}
 }

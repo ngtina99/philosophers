@@ -6,7 +6,7 @@
 /*   By: thuy-ngu <thuy-ngu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 23:19:17 by thuy-ngu          #+#    #+#             */
-/*   Updated: 2024/09/13 14:36:41 by thuy-ngu         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:48:49 by thuy-ngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	eating(t_philo *philo)
 	if (set_dead_bool(philo, CHECK))
 		return ;
 	update_last_meal_time(philo);
-	//philo->last_meal = get_time();
 	ft_usleep(philo->info->eat_time);
 	pthread_mutex_unlock(philo->right_fork);
 	philo->have_right_lock = false;
