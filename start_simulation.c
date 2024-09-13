@@ -6,7 +6,7 @@
 /*   By: thuy-ngu <thuy-ngu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 00:27:14 by thuy-ngu          #+#    #+#             */
-/*   Updated: 2024/09/13 16:52:09 by thuy-ngu         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:03:26 by thuy-ngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	check_locks(t_philo *philo)
 		pthread_mutex_unlock(philo->left_fork);
 }
 
-int	quit(t_philo *philo)
+int	ft_quit(t_philo *philo)
 {
 	if (set_dead_bool(philo, CHECK))
 	{
@@ -40,18 +40,18 @@ void	*start_simulation(void *convert_philo)
 	//	ft_usleep(philo->info->eat_time - 10);
 	while (1)
 	{
-		if (quit)
+		if (ft_quit(philo))
 			return (NULL);
 		get_fork(philo);
-		if (quit)
+		if (ft_quit(philo))
 			return (NULL);
 		eating(philo);
-		if (quit)
+		if (ft_quit(philo))
 			return (NULL);
 		if (philo->done)
 			return (NULL);
 		sleeping(philo);
-		if (quit)
+		if (ft_quit(philo))
 			return (NULL);
 		thinking(philo);
 	}
