@@ -6,7 +6,7 @@
 /*   By: thuy-ngu <thuy-ngu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 23:19:34 by thuy-ngu          #+#    #+#             */
-/*   Updated: 2024/09/10 19:59:31 by thuy-ngu         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:08:09 by thuy-ngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,13 @@ void	destroy_philo(t_philo *philo, pthread_mutex_t *forks, t_info *info)
 	while (i < philo->info->nbr_philo)
 	{
 		pthread_mutex_destroy(&(forks[i]));
-		pthread_mutex_destroy(&(philo[i].meal_nbr_mutex));
+		pthread_mutex_destroy(&(philo[i].nbr_eat_mutex));
 		pthread_mutex_destroy(&(philo[i].last_meal_mutex));
-		pthread_mutex_destroy(&(philo[i].state_mutex));
+		pthread_mutex_destroy(&(philo[i].status_mutex));
 		pthread_mutex_destroy(&(philo[i].dead_bool_mutex));
 		i++;
 	}
 	pthread_mutex_destroy(&(info->print_mutex));
-	pthread_mutex_destroy(&(info->eating_mutex));
 	free(philo);
 	free(forks);
 }

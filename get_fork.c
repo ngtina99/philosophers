@@ -6,7 +6,7 @@
 /*   By: thuy-ngu <thuy-ngu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:38:41 by thuy-ngu          #+#    #+#             */
-/*   Updated: 2024/09/13 14:39:27 by thuy-ngu         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:24:01 by thuy-ngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	odd_case(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left_fork);
 	philo->have_left_lock = true;
-	ft_print(GET_RIGHT_FORK, philo);
+	ft_print(GET_FORK, philo);
 	if (philo->info->nbr_philo == 1)
 	{
 		ft_usleep(philo->info->die_time);
@@ -26,7 +26,7 @@ void	odd_case(t_philo *philo)
 		return ;
 	pthread_mutex_lock(philo->right_fork);
 	philo->have_right_lock = true;
-	ft_print(GET_LEFT_FORK, philo);
+	ft_print(GET_FORK, philo);
 	if (set_dead_bool(philo, CHECK))
 		return ;
 }
@@ -35,12 +35,12 @@ void	even_case(t_philo *philo)
 {
 	pthread_mutex_lock(philo->right_fork);
 	philo->have_right_lock = true;
-	ft_print(GET_RIGHT_FORK, philo);
+	ft_print(GET_FORK, philo);
 	if (set_dead_bool(philo, CHECK))
 		return ;
 	pthread_mutex_lock(philo->left_fork);
 	philo->have_left_lock = true;
-	ft_print(GET_LEFT_FORK, philo);
+	ft_print(GET_FORK, philo);
 	if (set_dead_bool(philo, CHECK))
 		return ;
 }
