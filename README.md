@@ -2,7 +2,7 @@
 
 An implementation of the classic Dining Philosophers Problem in C.
 
-## 📜 Description
+## 📝 Description
 
 This project simulates the Dining Philosophers Problem using threads and mutexes, focusing on proper synchronization, timing precision, and deadlock prevention.
 
@@ -44,7 +44,7 @@ time_to_sleep: Time in ms to sleep (min 60 ms)
 
 number_of_times_each_philosopher_must_eat (optional): How many times each philosopher must eat before stopping
 
-## ☑️ Example Tests
+## ☑️ Tests
 ```bash
 ./philo 1 800 200 200 → Philosopher will die (cannot eat)
 ```
@@ -57,12 +57,35 @@ number_of_times_each_philosopher_must_eat (optional): How many times each philos
 ```bash
 ./philo 4 310 200 100 → One philosopher should die
 ```
+```bash
+./philo 4 410 200 200 → No philosopher should die
+```
+```bash
+./philo 2 <various> → Death delayed >10ms is unacceptable
+```
+Stress tests with varied values to ensure proper fork handling, death detection, and timing accuracy
 
-💼 Connect
+## ✅ Code Safety & Concurrency Assurance
+
+- No global variables (all shared data passed via structures)
+- All dynamic memory properly freed (no leaks)
+- All shared resources (forks, printing, state updates) protected by mutexes
+- No data races thanks to correct mutex use
+- Compiled with -Wall -Wextra -Werror
+
+## 💡 Debugging & Validation Tools
+
+To verify there are no data races or thread issues, run:
+```bash
+valgrind --tool=helgrind ./philo [arguments]   # checks for data races between threads
+valgrind --tool=drd ./philo [arguments]       # checks for data races and thread errors
+```
+
+## 💼 Connect
 If you have any questions or suggestions, feel free to connect: 🔗 LinkedIn: Valentina Nguyen 🙋‍♀️
 
-📜 License
+## 📜 License
 This project is licensed under the MIT License. See LICENSE for details.
 
-🖥️ System Compatibility
+## 🖥️ System Compatibility
 This project was developed and tested on Linux (Ubuntu).
