@@ -6,9 +6,7 @@ An implementation of the classic Dining Philosophers Problem in C.
 
 ## 📝 Description
 
-This project simulates the Dining Philosophers Problem using threads and mutexes, focusing on proper synchronization, timing precision, and deadlock prevention.
-
-The goal is to manage philosophers who alternately eat, sleep, and think while sharing limited resources (forks) without starving or causing deadlocks.
+This project simulates the Dining Philosophers Problem using threads and mutexes, focusing on proper synchronization, timing precision, and deadlock prevention. The goal is to manage philosophers who alternately eat, sleep, and think while sharing limited resources (forks) without starving or causing deadlocks.
 
 ## 🛠️ Usage
 
