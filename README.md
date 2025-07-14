@@ -2,7 +2,7 @@
 
 An implementation of the classic Dining Philosophers Problem in C.
 
-![Philo_pic](philosophers.png)
+![Philo_pic](philosophers.png)<img src="philosophers.png" width="200">
 
 ## 📝 Description
 
