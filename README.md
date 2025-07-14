@@ -34,15 +34,15 @@ make
 
 ## 🔎 Argument details
 
-number_of_philosophers: Number of philosophers (max 200)
+1️⃣ number_of_philosophers: Number of philosophers (max 200)
 
-time_to_die: Time in ms before a philosopher dies without eating (min 60 ms)
+2️⃣ time_to_die: Time in ms before a philosopher dies without eating (min 60 ms)
 
-time_to_eat: Time in ms it takes to eat (min 60 ms)
+3️⃣ time_to_eat: Time in ms it takes to eat (min 60 ms)
 
-time_to_sleep: Time in ms to sleep (min 60 ms)
+4️⃣ time_to_sleep: Time in ms to sleep (min 60 ms)
 
-number_of_times_each_philosopher_must_eat (optional): How many times each philosopher must eat before stopping
+5️⃣ number_of_times_each_philosopher_must_eat (optional): How many times each philosopher must eat before stopping
 
 ## ☑️ Tests
 ```bash
@@ -82,7 +82,8 @@ valgrind --tool=drd ./philo [arguments]       # checks for data races and thread
 ```
 
 ## 💼 Connect
-If you have any questions or suggestions, feel free to connect: 🔗 LinkedIn: Valentina Nguyen 🙋‍♀️
+If you have any questions or suggestions, feel free to connect:
+🔗 [LinkedIn: Valentina Nguyen](https://www.linkedin.com/in/valentina-nguyen-tina/) 🙋‍♀️
 
 ## 📜 License
 This project is licensed under the MIT License. See LICENSE for details.
