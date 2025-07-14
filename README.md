@@ -34,15 +34,15 @@ make
 
 ## 🔎 Argument details
 
-1️⃣ number_of_philosophers: Number of philosophers (max 200)
+1️. number_of_philosophers: Number of philosophers (max 200)
 
-2️⃣ time_to_die: Time in ms before a philosopher dies without eating (min 60 ms)
+2️. time_to_die: Time in ms before a philosopher dies without eating (min 60 ms)
 
-3️⃣ time_to_eat: Time in ms it takes to eat (min 60 ms)
+3️. time_to_eat: Time in ms it takes to eat (min 60 ms)
 
-4️⃣ time_to_sleep: Time in ms to sleep (min 60 ms)
+4️. time_to_sleep: Time in ms to sleep (min 60 ms)
 
-5️⃣ number_of_times_each_philosopher_must_eat (optional): How many times each philosopher must eat before stopping
+5️. number_of_times_each_philosopher_must_eat (optional): How many times each philosopher must eat before stopping
 
 ## ☑️ Tests
 ```bash
