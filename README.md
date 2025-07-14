@@ -1,14 +1,14 @@
-#Philosophers
+# Philosophers
 
 An implementation of the classic Dining Philosophers Problem in C.
 
-##📜 Description
+## 📜 Description
 
 This project simulates the Dining Philosophers Problem using threads and mutexes, focusing on proper synchronization, timing precision, and deadlock prevention.
 
 The goal is to manage philosophers who alternately eat, sleep, and think while sharing limited resources (forks) without starving or causing deadlocks.
 
-##🛠️ Usage
+## 🛠️ Usage
 
 1️⃣ **Clone the repository**
 
@@ -32,7 +32,7 @@ make
 ./philo 5 800 200 200
 ```
 
-##🔎 Argument details
+## 🔎 Argument details
 
 number_of_philosophers: Number of philosophers (max 200)
 
@@ -44,7 +44,7 @@ time_to_sleep: Time in ms to sleep (min 60 ms)
 
 number_of_times_each_philosopher_must_eat (optional): How many times each philosopher must eat before stopping
 
-##☑️ Example Tests
+## ☑️ Example Tests
 ```bash
 ./philo 1 800 200 200 → Philosopher will die (cannot eat)
 ```
