@@ -5,7 +5,7 @@
 *.o
 
 # Executable binary
-webserv
+philo
 
 # Backup or temp files
 *~
