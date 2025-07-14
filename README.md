@@ -2,6 +2,8 @@
 
 An implementation of the classic Dining Philosophers Problem in C.
 
+[Philo_pic](philosophers.png)
+
 ## 📝 Description
 
 This project simulates the Dining Philosophers Problem using threads and mutexes, focusing on proper synchronization, timing precision, and deadlock prevention.
