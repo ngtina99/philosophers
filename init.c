@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuy-ngu <thuy-ngu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ngtina1999 <ngtina1999@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 23:19:31 by thuy-ngu          #+#    #+#             */
-/*   Updated: 2024/09/13 16:39:19 by thuy-ngu         ###   ########.fr       */
+/*   Updated: 2025/07/14 23:40:21 by ngtina1999       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	init_args(t_info *args, int argc, char **argv)
 {
 	if (check_args(argv))
-		print_error(ERR_CHECK);
+		print_error(ERR_NUMBER);
 	args->nbr_philo = ft_atoi(argv[1]);
 	if (args->nbr_philo > 200 || args->nbr_philo == 0)
-		print_error(ERR_CHECK);
+		print_error(ERR_PHILO);
 	args->die_time = ft_atoi(argv[2]);
 	args->eat_time = ft_atoi(argv[3]);
 	args->sleep_time = ft_atoi(argv[4]);
 	if (args->die_time < 60 || args->eat_time < 60 || args->sleep_time < 60)
-		print_error(ERR_CHECK);
+		print_error(ERR_TIME);
 	if (argc == 6)
 		args->limitnbr_eat = ft_atoi(argv[5]);
 	else

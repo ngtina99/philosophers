@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuy-ngu <thuy-ngu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ngtina1999 <ngtina1999@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 23:19:12 by thuy-ngu          #+#    #+#             */
-/*   Updated: 2024/09/13 16:14:43 by thuy-ngu         ###   ########.fr       */
+/*   Updated: 2025/07/14 23:38:27 by ngtina1999       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ size_t	ft_atoi(const char *str)
 		}
 	}
 	if (value > 4294967295)
-		print_error(ERR_CHECK);
+		print_error(ERR_NUMBER);
 	return ((size_t)value);
 }

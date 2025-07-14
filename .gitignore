@@ -1,0 +1,14 @@
+# VSCode
+.vscode/
+
+# Compiled object files
+*.o
+
+# Executable binary
+webserv
+
+# Backup or temp files
+*~
+
+# Valgrind logs
+valgrind.log

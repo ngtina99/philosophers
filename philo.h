@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thuy-ngu <thuy-ngu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ngtina1999 <ngtina1999@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 19:55:39 by thuy-ngu          #+#    #+#             */
-/*   Updated: 2024/09/13 16:40:21 by thuy-ngu         ###   ########.fr       */
+/*   Updated: 2025/07/14 23:40:29 by ngtina1999       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@
 typedef enum s_error
 {
 	ERR_ARG,
-	ERR_CHECK,
+	ERR_NUMBER,
+	ERR_PHILO,
+	ERR_TIME,
 	ERR_MALLOC,
 	QUIT,
 }	t_error;
