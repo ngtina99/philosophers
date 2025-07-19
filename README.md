@@ -13,7 +13,7 @@ This project simulates the Dining Philosophers Problem using threads and mutexes
 1️⃣ **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/webserv.git philosophers
+git clone https://github.com/ngtina99/philosophers.git philosophers
 cd philosophers
 ```
 
