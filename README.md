@@ -49,19 +49,19 @@ make
 ./philo 1 800 200 200  # → Philosopher will die (cannot eat)
 ```
 ```bash
-./philo 5 800 200 200 → No philosopher should die
+./philo 5 800 200 200 # → No philosopher should die
 ```
 ```bash
-./philo 5 800 200 200 7 → Stops when each has eaten 7 times
+./philo 5 800 200 200 7 # → Stops when each has eaten 7 times
 ```
 ```bash
-./philo 4 310 200 100 → One philosopher should die
+./philo 4 310 200 100 # → One philosopher should die
 ```
 ```bash
-./philo 4 410 200 200 → No philosopher should die
+./philo 4 410 200 200 # → No philosopher should die
 ```
 ```bash
-./philo 2 <various> → Death delayed >10ms is unacceptable
+./philo 2 <various> # → Death delayed >10ms is unacceptable
 ```
 Stress tests with varied values to ensure proper fork handling, death detection, and timing accuracy
 
