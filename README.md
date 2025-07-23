@@ -46,7 +46,7 @@ make
 
 ## ☑️ Tests
 ```bash
-./philo 1 800 200 200 → Philosopher will die (cannot eat)
+./philo 1 800 200 200  # → Philosopher will die (cannot eat)
 ```
 ```bash
 ./philo 5 800 200 200 → No philosopher should die
